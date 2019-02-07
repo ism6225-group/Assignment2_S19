@@ -7,6 +7,8 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
+
+
             // left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
@@ -38,10 +40,13 @@ namespace Assignment2_S19
             int[] r3 = gradingStudents(grades);
             displayArray(r3);
 
+            //
+
             // find the median
             Console.WriteLine("\n\nFind the median");
-            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3};
+            int[] arr2 = { 0, 1, 2, 3, 4, 5 };
             Console.WriteLine(findMedian(arr2));
+            //
 
             // closest numbers
             Console.WriteLine("\n\nClosest numbers");
@@ -60,13 +65,42 @@ namespace Assignment2_S19
             foreach(int n in arr) {
                 Console.Write(n + " ");
             }
+            Console.ReadKey(true);
         }
 
+
+
+        //***//
+        
+        //**//
         // Complete the rotLeft function below.
-        static int[] rotLeft(int[] a, int d)
+         static int[] rotLeft(int[] a, int d)
         {
-            return new int[] {};
-        }
+        //    int labels = new int[]a;
+           try
+         {
+         int c;
+        for (int i = 0; i < a.Length; i++)
+         {
+           c = (i + d) / a.Length;
+                    //
+                    // a[] labels;
+                    // labels = new a[c];  
+                    //new [] k = new int a[c];
+                    //  Console.WriteLine(a[c]);
+                  
+                }
+                
+               // return c;
+                Console.ReadKey(true);
+
+            }
+         catch
+         {
+         Console.WriteLine("error");
+         }
+        return new int []{ };
+          }
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
@@ -90,12 +124,86 @@ namespace Assignment2_S19
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            return new int[] { };
+            int score = 0;
+            int[] marks = new int[grades.Length];
+            for(int i =0;i<grades.Length;i++)
+            {
+                score = ((grades[i] / 5) + 1) * 5;                          
+                if (score - grades[i] < 3 && grades[i] > 37)            //checking the condition if lesser than 40 and meeting expectation
+
+                    marks[i]= score;
+                else
+                {
+                    marks[i] = grades[i];
+                }
+            }
+            return marks;
+            Console.ReadKey(true);
+            //return 0;
         }
 
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
+
+
+            try
+            {
+
+                int count = arr.Length;
+                int temp = 0;             // Sorting the array
+
+                for (int k1 = 0; k1 < arr.Length; k1++)
+                {
+                    for (int l = 0; l < arr.Length; l++)
+                    {
+                        if (arr[l] < arr[k1])
+                        {
+                            temp = arr[k1];
+                            arr[k1] = arr[l];
+                            arr[l] = temp;
+                        }
+                    }
+                }
+                
+                // new []arr1 = new int arr[]{ };
+                int medianValue = 0;
+
+
+
+                if (count % 2 == 0)
+
+                {
+
+                    //if count is even
+                    int no1 = arr[(count / 2) - 1];
+
+                    int no2 = arr[(count / 2)];
+
+                    medianValue = (no1 + no2) / 2;
+
+                }
+
+                else
+
+                {
+
+                    // if count is odd
+                    medianValue = arr[(count / 2)];
+
+                }
+                //Double abc = Convert.ToDouble(medianValue);
+                // return Convert.ToDouble(medianValue);
+
+                return medianValue;
+
+                Console.WriteLine("press any key");
+                Console.ReadKey(true);
+            }
+            catch
+            {
+                Console.WriteLine("error");
+            }
             return 0;
         }
 
@@ -110,5 +218,6 @@ namespace Assignment2_S19
         {
             return "";
         }
+
     }
 }
