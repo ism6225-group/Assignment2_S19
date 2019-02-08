@@ -26,12 +26,6 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Start");
-            int[] sorted = Sort(array);
-            Console.WriteLine("My Sort");
-            Array.Sort(array);
-            Console.WriteLine("Stand Sort");
-            Console.WriteLine(sorted.SequenceEqual(array));
             // 1. left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
