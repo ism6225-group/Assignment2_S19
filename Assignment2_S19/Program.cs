@@ -26,6 +26,12 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Start");
+            int[] sorted = Sort(array);
+            Console.WriteLine("My Sort");
+            Array.Sort(array);
+            Console.WriteLine("Stand Sort");
+            Console.WriteLine(sorted.SequenceEqual(array));
             // 1. left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
@@ -76,8 +82,7 @@ namespace Assignment2_S19
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
             Console.ReadKey(true);
-
-        }
+        } // End of Main
 
         static void displayArray(int[] arr)
         {
@@ -89,10 +94,6 @@ namespace Assignment2_S19
             Console.ReadKey(true);
         }
 
-
-        //***//
-
-        //**//
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {
@@ -316,20 +317,37 @@ namespace Assignment2_S19
             return "";
         }
 
-        private static int[] Sort(int[] array, int left = 0, int right = 0)
+        // To skip sort in sum cases
+        private static int[] Sort(int[] array)
         {
             if (IsNullOrEmpty(array))
             {
                 return array;
             }
-            if (right == 0)
+            else if (array.Min() == array.Max())
             {
-                right = (array.Length - 1);
+                return array;
             }
+            else
+            {
+                int left = 0;
+                int right = (array.Length - 1);
+                return QuickSort(array, left, right);
+            }
+        }
+
+        /*
+            An implementation of Quicksort Algorithm
+        */
+        private static int[] QuickSort(int[] array, int left, int right)
+        {
             int iLeft = left;
             int iRight = right;
-            int pivot = array[iLeft];
-
+            //double pivotValue = left + ((right - left) / 2);
+            //int pivot = array[Convert.ToInt32(pivotValue)];
+            //Random rand = new Random();
+            //int pivot = array[rand.Next(left, right)];
+            int pivot = array[left];
             while (iLeft <= iRight)
             {
                 while (array[iLeft] < pivot)
@@ -351,11 +369,11 @@ namespace Assignment2_S19
             }
             if (left < iRight)
             {
-                Sort(array, left, iRight);
+                QuickSort(array, left, iRight);
             }
             if (iLeft < right)
             {
-                Sort(array, iLeft, right);
+                QuickSort(array, iLeft, right);
             }
             return array;
         }
