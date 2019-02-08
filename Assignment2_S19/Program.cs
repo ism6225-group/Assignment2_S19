@@ -1,5 +1,24 @@
-﻿using System;
+﻿/*
+    Project  : Assignment 2 – Computational Problem Solving
+    Coded by :
+               Sameera - P1, P5, P6
+               Vivek - P3, P7, P8
+               Alhasan - P2, P4, Sort() Algorithm 
+    Summary  : This C# Console application code is a group assignment
+    that focuses tightly on problem solving and using basic sorting algorithms.
+    It includes different methods:
+        1. Left Rotation
+        2. Maximum toys
+        3. Balanced sums
+        4. Missing numbers
+        5. Grading students
+        6. Find the median
+        7. Closest numbers
+        8. Day of Programmer
+*/
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment2_S19
 {
@@ -7,74 +26,75 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
-
-
-            // left rotation
+            // 1. left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
             int[] a = { 1, 2, 3, 4, 5 };
             int[] r = rotLeft(a, d);
             displayArray(r);
 
-            // Maximum toys
+            // 2. Maximum toys
             Console.WriteLine("\n\nMaximum toys");
             int k = 50;
             int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
             Console.WriteLine(maximumToys(prices, k));
+            Console.ReadKey(true);
 
-            // Balanced sums
+            // 3. Balanced sums
             Console.WriteLine("\n\nBalanced sums");
             List<int> arr = new List<int> { 1, 2, 3 };
             Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
 
-            // Missing numbers
+            // 4. Missing numbers
             Console.WriteLine("\n\nMissing numbers");
-            int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206};
-            int[] brr = {203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204};
+            int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206 };
+            int[] brr = { 203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204 };
             int[] r2 = missingNumbers(arr1, brr);
             displayArray(r2);
 
-            // grading students
+            // 5. grading students
             Console.WriteLine("\n\nGrading students");
             int[] grades = { 73, 67, 38, 33 };
             int[] r3 = gradingStudents(grades);
             displayArray(r3);
 
-            //
-
-            // find the median
+            // 6. find the median
             Console.WriteLine("\n\nFind the median");
-            int[] arr2 = { 0, 1, 2, 3, 4, 5 };
+            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
             Console.WriteLine(findMedian(arr2));
-            //
+            Console.ReadKey(true);
 
-            // closest numbers
+            // 7. closest numbers
             Console.WriteLine("\n\nClosest numbers");
             int[] arr3 = { 5, 4, 3, 2 };
             int[] r4 = closestNumbers(arr3);
             displayArray(r4);
 
-            // Day of programmer
+            // 8. Day of programmer
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
-        } // End of Main
+            Console.ReadKey(true);
 
-        static void displayArray(int []arr) {
+        }
+
+        static void displayArray(int[] arr)
+        {
             Console.WriteLine();
-            foreach(int n in arr) {
+            foreach (int n in arr)
+            {
                 Console.Write(n + " ");
             }
             Console.ReadKey(true);
         }
 
 
-
         //***//
-        
+
         //**//
         // Complete the rotLeft function below.
-         static int[] rotLeft(int[] a, int d)
+        static int[] rotLeft(int[] a, int d)
         {
         //    int labels = new int[]a;
            try
@@ -92,7 +112,7 @@ namespace Assignment2_S19
                 }
                 
                // return c;
-                Console.ReadKey(true);
+                //Console.ReadKey(true);
 
             }
          catch
@@ -103,9 +123,86 @@ namespace Assignment2_S19
           }
 
         // Complete the maximumToys function below.
-        static int maximumToys(int[] prices, int k)
+        static int maximumToys(int[] prices, int budget)
         {
-            return 0;
+            int maximumToys = 0;
+            int numberOfToys = 0;
+            try
+            {
+                // If the number of priced toys is null or empty
+                if (IsNullOrEmpty(prices))
+                {
+                    maximumToys = 0;
+                }
+                // If there is a toy with negative number as a price!
+                else if (prices.Min() < 0)
+                {
+                    Console.WriteLine("There is at least one toy with negative (-) price!, please use reasonable prices");
+                    maximumToys = 0;
+                }
+                // If the budget is not a negative number!
+                else if (budget < 0)
+                {
+                    Console.WriteLine("Your budget is negative (-), please use reasonable budget");
+                    maximumToys = 0;
+                }
+                // If maximumToys() got valid and reasonable parameters
+                else
+                {
+                    numberOfToys = prices.Length;
+                    // They are free toys, Mark will take them all :)
+                    if (prices.Sum() == 0)
+                    {
+                        maximumToys = numberOfToys;
+                    }
+                    // If Mark has enough budget, he will take them all :)
+                    else if (budget >= prices.Sum())
+                    {
+                        maximumToys = numberOfToys;
+                    }
+                    // If Mark does not have enough budget, he will take nothing all :(
+                    else if (budget < prices.Min())
+                    {
+                        maximumToys = 0;
+                    }
+                    // If Mark has enough budget only for the minimum priced toy, he will take it :)
+                    else if (budget == prices.Min())
+                    {
+                        maximumToys = 1;
+                    }
+                    /*
+                        If Mark has only a certain amount to spend, and can take more than one toy
+                        and he wants to maximize the number of toys he buys with this money
+                    */
+                    else
+                    {
+                        /*
+                            1. Sort the prices array
+                            2. Add more toys as long as Mark has enough budget
+                            3. Break when Mark does not have enough budget
+                        */
+                        int[] sortedPrices = Sort(prices);
+                        foreach (int toy in prices)
+                        {
+                            if (budget >= toy)
+                            {
+                                maximumToys++;
+                                budget -= toy;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine();
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing maximumToys()");
+            }
+            return maximumToys;
         }
 
         // Complete the balancedSums function below.
@@ -219,5 +316,58 @@ namespace Assignment2_S19
             return "";
         }
 
+        private static int[] Sort(int[] array, int left = 0, int right = 0)
+        {
+            if (IsNullOrEmpty(array))
+            {
+                return array;
+            }
+            if (right == 0)
+            {
+                right = (array.Length - 1);
+            }
+            int iLeft = left;
+            int iRight = right;
+            int pivot = array[iLeft];
+
+            while (iLeft <= iRight)
+            {
+                while (array[iLeft] < pivot)
+                {
+                    iLeft++;
+                }
+                while (array[iRight] > pivot)
+                {
+                    iRight--;
+                }
+                if (iLeft <= iRight)
+                {
+                    int temp = array[iLeft];
+                    array[iLeft] = array[iRight];
+                    iLeft++;
+                    array[iRight] = temp;
+                    iRight--;
+                }
+            }
+            if (left < iRight)
+            {
+                Sort(array, left, iRight);
+            }
+            if (iLeft < right)
+            {
+                Sort(array, iLeft, right);
+            }
+            return array;
+        }
+
+        private static bool IsNullOrEmpty(int[] array)
+        {
+            if (array == null || array.Length == 0)
+            {
+                Console.WriteLine("This is a null or empty array!");
+                return true;
+            }
+            return false;
+        }
     }
 }
