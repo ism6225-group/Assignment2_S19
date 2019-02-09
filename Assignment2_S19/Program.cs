@@ -204,10 +204,67 @@ namespace Assignment2_S19
         }
 
         // Complete the balancedSums function below.
-        static string balancedSums(List<int> arr)
+      static string balancedStorages(List<int> arr)
         {
-            return "";
+
+            int n = arr.Count;
+
+            int[] Sample = arr.ToArray();
+            //total sum of given array
+            int ADDStorage = 0;
+            for (int x = 0; x < Sample.Length; x++)
+            {
+                ADDStorage = ADDStorage + Sample[x];
+               
+            }
+         
+            int[] Storage = new int[n];
+            Storage[0] = Sample[0];
+            for (int i = 1; i < n; i++)
+            {
+                Storage[i] = Storage[i - 1] + Sample[i];
+            }
+            bool test = false;
+            if (n == 1) 
+                test = true;
+           
+
+            int totalStorage = ADDStorage;
+            if (totalStorage > 0)
+            {
+                //comparing left and right array
+                for (int i = 1; i < n; i++)
+                {
+                    int left_array = Storage[i - 1];
+                    int right_array = Storage[n - 1] - Storage[i];
+                    if (left_array == right_array)
+                    {
+                        test = true;
+                        break;
+                    }
+                }
+            }
+            else
+                test = true;
+            //checking for conditions where 1st position of array has a number and rest of the array is 0
+            for (int i = 0; i < n; i++)
+            {
+                if (totalStorage == Sample[i])
+                {
+                    test = true;
+                }
+            }
+
+            if (test)
+            {
+                return "YES";
+            }
+            else
+                return "NO";
         }
+    }
+}
+
 
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] incompleteArray, int[] originalArray)
@@ -410,10 +467,35 @@ namespace Assignment2_S19
         }
 
         // Complete the dayOfProgrammer function below.
-        static string dayOfProgrammer(int year)
+    static string dayOfProgrammer(int year)
+    
+    {
+        if (year >= 1919)
         {
-            return "";
+            if ((year % 400 == 0)||(year % 4 == 0 && year % 100 != 0) )
+            {
+                return "12.09." + year;
+            }
+            else
+                return "13.09." + year;
         }
+        else if (year == 1918)
+        {
+            return "26.09.1918";
+        }
+        else
+        {
+            if (year % 4 == 0)
+            {
+                return "12.09." + year;
+            }
+            else
+                return "13.09." + year;
+        }
+    }
+
+
+
 
         // To skip sort in sum cases
         private static int[] Sort(int[] array)
