@@ -91,31 +91,32 @@ namespace Assignment2_S19
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {
-            //    int labels = new int[]a;
+
+            int[] labels = new int[a.Length];   // new array to store the values
             try
             {
                 int c;
                 for (int i = 0; i < a.Length; i++)
                 {
-                    c = (i + d) / a.Length;
-                    //
-                    // a[] labels;
-                    // labels = new a[c];  
-                    //new [] k = new int a[c];
-                    //  Console.WriteLine(a[c]);
+                    c = (i + d) % a.Length;
+                    labels[i] = a[c];
+
 
                 }
 
-                // return c;
-                //Console.ReadKey(true);
+
 
             }
             catch
             {
                 Console.WriteLine("error");
             }
-            return new int[] { };
+            return labels;                      // return the rotated array
         }
+
+
+
+
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int budget)
@@ -357,20 +358,8 @@ namespace Assignment2_S19
             {
 
                 int count = arr.Length;
-                int temp = 0;             // Sorting the array
+                int[] SortedArray = Sort(arr);  //using the sort method created below
 
-                for (int k1 = 0; k1 < arr.Length; k1++)
-                {
-                    for (int l = 0; l < arr.Length; l++)
-                    {
-                        if (arr[l] < arr[k1])
-                        {
-                            temp = arr[k1];
-                            arr[k1] = arr[l];
-                            arr[l] = temp;
-                        }
-                    }
-                }
 
                 // new []arr1 = new int arr[]{ };
                 int medianValue = 0;
@@ -382,9 +371,9 @@ namespace Assignment2_S19
                 {
 
                     //if count is even
-                    int no1 = arr[(count / 2) - 1];
+                    int no1 = SortedArray[(count / 2) - 1];
 
-                    int no2 = arr[(count / 2)];
+                    int no2 = SortedArray[(count / 2)];
 
                     medianValue = (no1 + no2) / 2;
 
@@ -395,11 +384,10 @@ namespace Assignment2_S19
                 {
 
                     // if count is odd
-                    medianValue = arr[(count / 2)];
+                    medianValue = SortedArray[(count / 2)];
 
                 }
-                //Double abc = Convert.ToDouble(medianValue);
-                // return Convert.ToDouble(medianValue);
+
 
                 return medianValue;
 
@@ -412,6 +400,8 @@ namespace Assignment2_S19
             }
             return 0;
         }
+
+
 
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
