@@ -5,16 +5,16 @@
                Vivek - P3, P7, P8
                Alhasan - P2, P4, Sort() Algorithm 
     Summary  : This C# Console application code is a group assignment
-    that focuses tightly on problem solving and using basic sorting algorithms.
-    It includes different methods:
-        1. Left Rotation
-        2. Maximum toys
-        3. Balanced sums
-        4. Missing numbers
-        5. Grading students
-        6. Find the median
-        7. Closest numbers
-        8. Day of Programmer
+               that focuses tightly on problem solving and using basic sorting algorithms.
+               It includes different methods:
+                1. Left Rotation
+                2. Maximum toys
+                3. Balanced sums
+                4. Missing numbers
+                5. Grading students
+                6. Find the median
+                7. Closest numbers
+                8. Day of Programmer
 */
 using System;
 using System.Collections.Generic;
@@ -26,6 +26,17 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
+            // Testing Sort();
+            //int[] prices2 = new int[10];
+            //Random randNum = new Random();
+            //for (int i = 0; i < prices2.Length; i++)
+            //{
+            //    prices2[i] = randNum.Next(-2, 2);
+            //}
+            //int[] sprices = Sort(prices2);
+            //prices2[0] = 9;
+            //displayArray(prices2);
+            //displayArray(sprices);
             // 1. left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
@@ -177,7 +188,7 @@ namespace Assignment2_S19
                             3. Break when Mark does not have enough budget
                         */
                         int[] sortedPrices = Sort(prices);
-                        foreach (int toy in prices)
+                        foreach (int toy in sortedPrices)
                         {
                             if (budget >= toy)
                             {
@@ -207,9 +218,51 @@ namespace Assignment2_S19
         }
 
         // Complete the missingNumbers function below.
-        static int[] missingNumbers(int[] arr, int[] brr)
+        static int[] missingNumbers(int[] incompleteArray, int[] originalArray)
         {
-            return new int[] { };
+            int[] missingNumber;
+            try
+            {
+                // If the original array of numbers is null or empty
+                if (IsNullOrEmpty(originalArray))
+                {
+                    missingNumber = null;
+                }
+                // If the incomplete array of numbers is null or empty
+                else if (IsNullOrEmpty(incompleteArray))
+                {
+                    missingNumber = originalArray;
+                }
+                else
+                {
+
+                    //int[] sortedOriginalArray = Sort(originalArray);
+                    //if (incompleteArray.Length == 1)
+                    //{
+                    //    int searchValue = Array.BinarySearch(myArr, myObject);
+                    //    if (searchValue < 0)
+                    //    {
+                    //        Console.WriteLine("The object to search for ({0}) is not found. The next larger object is at index {1}.", myObject, ~myIndex);
+                    //    }
+                    //    else
+                    //    {
+                            
+                    //        Console.WriteLine("The object to search for ({0}) is at index {1}.", myObject, myIndex);
+                    //    }
+                    //}
+                    //else
+                    //{
+
+                    //}
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured while computing missingNumbers()");
+            }
+            //int[] distinctMissingNumbers = missingNumber.Distinct();
+            //return distinctMissingNumbers;
+            return new int[0];
         }
 
 
@@ -326,21 +379,28 @@ namespace Assignment2_S19
             {
                 int left = 0;
                 int right = (array.Length - 1);
-                return QuickSort(array, left, right);
+                try
+                {
+                    int[] toSortArray = (int[])array.Clone();
+                    return QuickSort(toSortArray, left, right);
+                }
+                catch
+                {
+                    Console.WriteLine("This is a huge array and consumes so much memory,\n" +
+                        "Sort() will change the array itself without cloning!");
+                    return QuickSort(array, left, right);
+                }
             }
         }
 
         /*
             An implementation of Quicksort Algorithm
+            Reference: https://en.wikipedia.org/wiki/Quicksort
         */
         private static int[] QuickSort(int[] array, int left, int right)
         {
             int iLeft = left;
             int iRight = right;
-            //double pivotValue = left + ((right - left) / 2);
-            //int pivot = array[Convert.ToInt32(pivotValue)];
-            //Random rand = new Random();
-            //int pivot = array[rand.Next(left, right)];
             int pivot = array[left];
             while (iLeft <= iRight)
             {
@@ -381,5 +441,21 @@ namespace Assignment2_S19
             }
             return false;
         }
+
+        //private static int Frequency(int position, int[] array)
+        //{
+        //    int frequency = 0; // An integer to save the frequency value
+        //    /*
+        //        A for loop that:
+        //        1) Starts from the position of the element to count
+        //        2) Continues to count as long as the next element is equivalent
+        //        3) Stop if it reached the last equivalent element
+        //    */
+        //    for (int i = position; i < array.Length && array[i] == array[position]; i++)
+        //    {
+        //        frequency++;
+        //    }
+        //    return frequency;
+        //}
     }
 }
