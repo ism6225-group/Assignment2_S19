@@ -204,68 +204,72 @@ namespace Assignment2_S19
         }
 
         // Complete the balancedSums function below.
-      static string balancedStorages(List<int> arr)
+       static string balancedSums(List<int> arr)
         {
+            try {
+                int n = arr.Count;
 
-            int n = arr.Count;
+                int[] Sample = arr.ToArray();
+                //total sum of given array
+                int ADDStorage = 0;
+                for (int x = 0; x < Sample.Length; x++)
+                {
+                    ADDStorage = ADDStorage + Sample[x];
 
-            int[] Sample = arr.ToArray();
-            //total sum of given array
-            int ADDStorage = 0;
-            for (int x = 0; x < Sample.Length; x++)
-            {
-                ADDStorage = ADDStorage + Sample[x];
-               
-            }
-         
-            int[] Storage = new int[n];
-            Storage[0] = Sample[0];
-            for (int i = 1; i < n; i++)
-            {
-                Storage[i] = Storage[i - 1] + Sample[i];
-            }
-            bool test = false;
-            if (n == 1) 
-                test = true;
-           
+                }
 
-            int totalStorage = ADDStorage;
-            if (totalStorage > 0)
-            {
-                //comparing left and right array
+                int[] Storage = new int[n];
+                Storage[0] = Sample[0];
                 for (int i = 1; i < n; i++)
                 {
-                    int left_array = Storage[i - 1];
-                    int right_array = Storage[n - 1] - Storage[i];
-                    if (left_array == right_array)
+                    Storage[i] = Storage[i - 1] + Sample[i];
+                }
+                bool test = false;
+                if (n == 1)
+                    test = true;
+
+
+                int totalStorage = ADDStorage;
+                if (totalStorage > 0)
+                {
+                    //comparing left and right array
+                    for (int i = 1; i < n; i++)
                     {
-                        test = true;
-                        break;
+                        int left_array = Storage[i - 1];
+                        int right_array = Storage[n - 1] - Storage[i];
+                        if (left_array == right_array)
+                        {
+                            test = true;
+                            break;
+                        }
                     }
                 }
-            }
-            else
-                test = true;
-            //checking for conditions where 1st position of array has a number and rest of the array is 0
-            for (int i = 0; i < n; i++)
-            {
-                if (totalStorage == Sample[i])
-                {
+                else
                     test = true;
+                //checking for conditions where 1st position of array has a number and rest of the array is 0
+                for (int i = 0; i < n; i++)
+                {
+                    if (totalStorage == Sample[i])
+                    {
+                        test = true;
+                    }
                 }
-            }
 
-            if (test)
-            {
-                return "YES";
+                if (test)
+                {
+                    return "YES";
+                }
+                else
+                    return "NO";
             }
-            else
-                return "NO";
-        }
+            catch
+            {
+                Console.WriteLine("error");
+            }
+            return "";
+            }
     }
 }
-
-
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] incompleteArray, int[] originalArray)
         {
@@ -461,18 +465,75 @@ namespace Assignment2_S19
 
 
         // Complete the closestNumbers function below.
+       static void displayArray(int[] arr)
+        {
+            Console.WriteLine();
+            foreach (int n in arr)
+            {
+                Console.Write(n + " ");
+            }
+        }
+
         static int[] closestNumbers(int[] arr)
         {
+            try {
+                
+                int count = arr.Count();
+                int[] GivenInput = arr;
+
+                var Listing_Array = new int[count];
+                for (int i = 0; i < count; i++)
+                {
+                    Listing_Array[i] = Convert.ToInt32(GivenInput[i]);
+                }
+               //Our method to be used here didnot work when i tried separately
+                Array.Sort(Listing_Array);
+    
+
+                var Output = new List<int>();
+                int min = Math.Abs(Listing_Array[1] - Listing_Array[0]);
+                int ComparedResult = min;
+                for (int i = 0, j = 1; j < count; i++, j++)
+                {
+                    if ((ComparedResult = Math.Abs(Listing_Array[j] - Listing_Array[i])) <= min)
+                    {
+
+                        if (min != ComparedResult)
+                            Output.Clear();
+                        Output.Add(i);
+                        Output.Add(j);
+                        min = ComparedResult;
+                    }
+                }
+                for (int i = 0; i < Output.Count; i++)
+                {
+                    Console.Write(Listing_Array[Output[i]] + " ");
+                }
+
+
+
+                return new int[] { };
+            }
+            catch
+            {
+                Console.WriteLine("error");
+            }
+
             return new int[] { };
         }
+    
+
+
 
         // Complete the dayOfProgrammer function below.
     static string dayOfProgrammer(int year)
     
     {
+        try 
+    { 
         if (year >= 1919)
         {
-            if ((year % 400 == 0)||(year % 4 == 0 && year % 100 != 0) )
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
             {
                 return "12.09." + year;
             }
@@ -493,6 +554,16 @@ namespace Assignment2_S19
                 return "13.09." + year;
         }
     }
+            catch
+        {
+            Console.WriteLine("error");
+         
+        }
+        return "";
+    }
+    
+
+
 
 
 
