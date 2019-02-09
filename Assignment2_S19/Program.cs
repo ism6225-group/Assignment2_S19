@@ -26,17 +26,6 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
-            // Testing Sort();
-            //int[] prices2 = new int[10];
-            //Random randNum = new Random();
-            //for (int i = 0; i < prices2.Length; i++)
-            //{
-            //    prices2[i] = randNum.Next(-2, 2);
-            //}
-            //int[] sprices = Sort(prices2);
-            //prices2[0] = 9;
-            //displayArray(prices2);
-            //displayArray(sprices);
             // 1. left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
@@ -102,31 +91,31 @@ namespace Assignment2_S19
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {
-        //    int labels = new int[]a;
-           try
-         {
-         int c;
-        for (int i = 0; i < a.Length; i++)
-         {
-           c = (i + d) / a.Length;
+            //    int labels = new int[]a;
+            try
+            {
+                int c;
+                for (int i = 0; i < a.Length; i++)
+                {
+                    c = (i + d) / a.Length;
                     //
                     // a[] labels;
                     // labels = new a[c];  
                     //new [] k = new int a[c];
                     //  Console.WriteLine(a[c]);
-                  
+
                 }
-                
-               // return c;
+
+                // return c;
                 //Console.ReadKey(true);
 
             }
-         catch
-         {
-         Console.WriteLine("error");
-         }
-        return new int []{ };
-          }
+            catch
+            {
+                Console.WriteLine("error");
+            }
+            return new int[] { };
+        }
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int budget)
@@ -143,13 +132,15 @@ namespace Assignment2_S19
                 // If there is a toy with negative number as a price!
                 else if (prices.Min() < 0)
                 {
-                    Console.WriteLine("There is at least one toy with negative (-) price!, please use reasonable prices");
+                    Console.WriteLine("There is a toy with negative (-) price!, please use reasonable prices\n" +
+                        "(a positive number or 0 if it is free)");
                     maximumToys = 0;
                 }
                 // If the budget is not a negative number!
                 else if (budget < 0)
                 {
-                    Console.WriteLine("Your budget is negative (-), please use reasonable budget");
+                    Console.WriteLine("Your budget is negative (-), please use reasonable budget\n" +
+                        "(a positive number or 0 if mark has nothing)");
                     maximumToys = 0;
                 }
                 // If maximumToys() got valid and reasonable parameters
@@ -220,49 +211,119 @@ namespace Assignment2_S19
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] incompleteArray, int[] originalArray)
         {
-            int[] missingNumber;
+            int[] cleanMissingNumbers;
             try
             {
                 // If the original array of numbers is null or empty
                 if (IsNullOrEmpty(originalArray))
                 {
-                    missingNumber = null;
+                    Console.WriteLine("The original array of numbers must have at least one number!");
+                    cleanMissingNumbers = Array.Empty<int>();
                 }
-                // If the incomplete array of numbers is null or empty
-                else if (IsNullOrEmpty(incompleteArray))
+                // If the incomplete array of numbers is null
+                else if (incompleteArray == null)
                 {
-                    missingNumber = originalArray;
+                    Console.WriteLine("This is a null array!\n" +
+                        "The incomplete array of numbers must be at least Empty!");
+                    cleanMissingNumbers = Array.Empty<int>();
                 }
+                // If the incomplete array of numbers has more numbers than the original array numbers!
+                else if (incompleteArray.Length > originalArray.Length)
+                {
+                    Console.WriteLine("The array with missing numbers must not have numbers more than the original array numbers!");
+                    cleanMissingNumbers = Array.Empty<int>();
+                }
+                // If the difference between maximum and minimum number in the original array is greater than 100.
+                else if ((originalArray.Max() - originalArray.Min()) > 100)
+                {
+                    Console.WriteLine("The difference between maximum and minimum number in the original array must be less than or equal to 100.");
+                    cleanMissingNumbers = Array.Empty<int>();
+                }
+                // If the incomplete array of numbers is empty, return all numbers
+                else if (incompleteArray.Length == 0)
+                {
+                    int[] sortedOriginalArray = Sort(originalArray);
+                    int[] distinctSortedOriginalArray = sortedOriginalArray.Distinct().ToArray();
+                    cleanMissingNumbers = distinctSortedOriginalArray;
+                }
+                // If we need to sort to the incomplete array and the original array
                 else
                 {
-
-                    //int[] sortedOriginalArray = Sort(originalArray);
-                    //if (incompleteArray.Length == 1)
-                    //{
-                    //    int searchValue = Array.BinarySearch(myArr, myObject);
-                    //    if (searchValue < 0)
-                    //    {
-                    //        Console.WriteLine("The object to search for ({0}) is not found. The next larger object is at index {1}.", myObject, ~myIndex);
-                    //    }
-                    //    else
-                    //    {
-                            
-                    //        Console.WriteLine("The object to search for ({0}) is at index {1}.", myObject, myIndex);
-                    //    }
-                    //}
-                    //else
-                    //{
-
-                    //}
+                    int[] sortedOriginalArray = Sort(originalArray);
+                    int[] sortedIncompleteArray = Sort(incompleteArray);
+                    int[] distinctSortedOriginalArray = sortedOriginalArray.Distinct().ToArray();
+                    int[] distinctSortedIncompleteArray = sortedIncompleteArray.Distinct().ToArray();
+                    foreach (int number in distinctSortedIncompleteArray)
+                    {
+                        int searchIndex = Array.BinarySearch(distinctSortedOriginalArray, number);
+                        if (searchIndex < 0)
+                        {
+                            Console.WriteLine("The array with missing numbers has a number not in the original array!\n" +
+                                "It must not have that!");
+                            cleanMissingNumbers = Array.Empty<int>();
+                            return cleanMissingNumbers;
+                        }
+                    }
+                    int numberOfMissingNumbers = originalArray.Length - incompleteArray.Length;
+                    // If the incomplete array of numbers has same numbers as the original array!
+                    if (numberOfMissingNumbers == 0)
+                    {
+                        if (sortedIncompleteArray.SequenceEqual(sortedOriginalArray))
+                        {
+                            cleanMissingNumbers = Array.Empty<int>();
+                            Console.WriteLine("No missing numbers");
+                        }
+                        // If the incomplete array of numbers has number not in the original array!
+                        else
+                        {
+                            Console.WriteLine("The array with missing numbers has either:\n" +
+                                "* A number not in the original array!\n" +
+                                "* A number with a frequency more than its frequency in the original array\n" +
+                                "It must not have these!");
+                            cleanMissingNumbers = Array.Empty<int>();
+                        }
+                    }
+                    else
+                    {
+                        int[] missingNumbers = new int[numberOfMissingNumbers];
+                        int missingNumbersIndex = 0;
+                        foreach (int number in distinctSortedOriginalArray)
+                        {
+                            int searchIndex = Array.BinarySearch(distinctSortedIncompleteArray, number);
+                            if (searchIndex < 0)
+                            {
+                                missingNumbers[missingNumbersIndex] = number;
+                                missingNumbersIndex++;
+                            }
+                            else
+                            {
+                                int numberFrequencyInOriginalArray = sortedOriginalArray.Count(element => element == number);
+                                int numberFrequencyInIncompleteArray = sortedIncompleteArray.Count(element => element == number);
+                                if (numberFrequencyInOriginalArray > numberFrequencyInIncompleteArray)
+                                {
+                                    missingNumbers[missingNumbersIndex] = number;
+                                    missingNumbersIndex++;
+                                }
+                                else if (numberFrequencyInOriginalArray < numberFrequencyInIncompleteArray)
+                                {
+                                    Console.WriteLine("The array with missing numbers has a number with a frequency more than its frequency in the original array\n" +
+                                        "It must not have that!");
+                                    cleanMissingNumbers = Array.Empty<int>();
+                                    return cleanMissingNumbers;
+                                }
+                            }
+                        }
+                        cleanMissingNumbers = new int[missingNumbersIndex];
+                        Array.Copy(missingNumbers, cleanMissingNumbers, cleanMissingNumbers.Length);
+                    }
                 }
             }
             catch
             {
                 Console.WriteLine("Exception occured while computing missingNumbers()");
+                cleanMissingNumbers = Array.Empty<int>();
             }
-            //int[] distinctMissingNumbers = missingNumber.Distinct();
-            //return distinctMissingNumbers;
-            return new int[0];
+            return cleanMissingNumbers;
         }
 
 
@@ -271,12 +332,12 @@ namespace Assignment2_S19
         {
             int score = 0;
             int[] marks = new int[grades.Length];
-            for(int i =0;i<grades.Length;i++)
+            for (int i = 0; i < grades.Length; i++)
             {
-                score = ((grades[i] / 5) + 1) * 5;                          
+                score = ((grades[i] / 5) + 1) * 5;
                 if (score - grades[i] < 3 && grades[i] > 37)            //checking the condition if lesser than 40 and meeting expectation
 
-                    marks[i]= score;
+                    marks[i] = score;
                 else
                 {
                     marks[i] = grades[i];
@@ -310,7 +371,7 @@ namespace Assignment2_S19
                         }
                     }
                 }
-                
+
                 // new []arr1 = new int arr[]{ };
                 int medianValue = 0;
 
@@ -441,21 +502,5 @@ namespace Assignment2_S19
             }
             return false;
         }
-
-        //private static int Frequency(int position, int[] array)
-        //{
-        //    int frequency = 0; // An integer to save the frequency value
-        //    /*
-        //        A for loop that:
-        //        1) Starts from the position of the element to count
-        //        2) Continues to count as long as the next element is equivalent
-        //        3) Stop if it reached the last equivalent element
-        //    */
-        //    for (int i = position; i < array.Length && array[i] == array[position]; i++)
-        //    {
-        //        frequency++;
-        //    }
-        //    return frequency;
-        //}
     }
 }
