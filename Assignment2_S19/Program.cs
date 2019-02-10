@@ -625,7 +625,7 @@ namespace Assignment2_S19
         {
             try
             {
-
+                //var count = 10;
                 int count = arr.Count();
                 int[] GivenInput = arr;
 
@@ -634,16 +634,15 @@ namespace Assignment2_S19
                 {
                     Listing_Array[i] = Convert.ToInt32(GivenInput[i]);
                 }
-                //Our method to be used here didnot work when i tried separately
-                Array.Sort(Listing_Array);
-
+                //Array.Sort(Listing_Array);
+                int[] Sorted = Sort(Listing_Array);
 
                 var Output = new List<int>();
-                int min = Math.Abs(Listing_Array[1] - Listing_Array[0]);
+                int min = Math.Abs(Sorted[1] - Sorted[0]);
                 int ComparedResult = min;
                 for (int i = 0, j = 1; j < count; i++, j++)
                 {
-                    if ((ComparedResult = Math.Abs(Listing_Array[j] - Listing_Array[i])) <= min)
+                    if ((ComparedResult = Math.Abs(Sorted[j] - Sorted[i])) <= min)
                     {
 
                         if (min != ComparedResult)
@@ -655,7 +654,7 @@ namespace Assignment2_S19
                 }
                 for (int i = 0; i < Output.Count; i++)
                 {
-                    Console.Write(Listing_Array[Output[i]] + " ");
+                    Console.Write(Sorted[Output[i]] + " ");
                 }
 
 
