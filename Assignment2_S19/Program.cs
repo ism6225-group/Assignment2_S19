@@ -1,9 +1,9 @@
 ﻿/*
     Project  : Assignment 2 – Computational Problem Solving
     Coded by :
-               Sameera - P1, P5, P6
-               Vivek - P3, P7, P8
-               Alhasan - P2, P4, Sort() Algorithm 
+               Sameera - P1, P5, P6 (Reviewed by Alhasan)
+               Vivek - P3, P7, P8 (Reviewed by Sameera)
+               Alhasan - P2, P4, Sort() Algorithm (Reviewed by Vivek)
     Summary  : This C# Console application code is a group assignment
                that focuses tightly on problem solving and using basic sorting algorithms.
                It includes different methods:
@@ -26,57 +26,159 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
-            // 1. left rotation
+            /* Original Main
+            // left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
             int[] a = { 1, 2, 3, 4, 5 };
             int[] r = rotLeft(a, d);
             displayArray(r);
 
-            // 2. Maximum toys
+            // Maximum toys
             Console.WriteLine("\n\nMaximum toys");
             int k = 50;
             int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
             Console.WriteLine(maximumToys(prices, k));
-            Console.ReadKey(true);
 
-            // 3. Balanced sums
+            // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
             List<int> arr = new List<int> { 1, 2, 3 };
             Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
 
-            // 4. Missing numbers
+            // Missing numbers
             Console.WriteLine("\n\nMissing numbers");
             int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206 };
             int[] brr = { 203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204 };
             int[] r2 = missingNumbers(arr1, brr);
             displayArray(r2);
 
-            // 5. grading students
+            // grading students
             Console.WriteLine("\n\nGrading students");
             int[] grades = { 73, 67, 38, 33 };
             int[] r3 = gradingStudents(grades);
             displayArray(r3);
 
-            // 6. find the median
+            // find the median
             Console.WriteLine("\n\nFind the median");
             int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
             Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
 
-            // 7. closest numbers
+            // closest numbers
             Console.WriteLine("\n\nClosest numbers");
             int[] arr3 = { 5, 4, 3, 2 };
             int[] r4 = closestNumbers(arr3);
             displayArray(r4);
 
-            // 8. Day of programmer
+            // Day of programmer
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
+            */
+
+            // Testing left rotation
+            Console.WriteLine("Left Rotation");
+            Console.WriteLine("\nCase 1:");
+            int rotations = 2147483644;
+            int[] integers = { 1, 2, 3, 4, 5 };
+            int[] rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            int[] correct = { 5, 1, 2, 3, 4 };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
             Console.ReadKey(true);
-        } // End of Main
+            Console.WriteLine("\nCase 2:");
+            rotations = 0;
+            integers = new int[] { 1, 2, 3, 4, 5 };
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[] { 1, 2, 3, 4, 5 };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);
+            /*Console.WriteLine("\nCase 3:");
+            rotations = -1;
+            integers = new int[] { 1, 2, 3, 4, 5 };
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[] { 1, 2, 3, 4, 5 };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);*/
+            Console.WriteLine("\nCase 4:");
+            rotations = 10;
+            integers = new int[0];
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[0];
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);
+            /*Console.WriteLine("\nCase 5:");
+            rotations = 10;
+            integers = null;
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[] { };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);*/
+            /*Console.WriteLine("\nCase 6:");
+            rotations = 10;
+            integers = new int[447483647];
+            Console.WriteLine("Created");
+            rotationsToLeft = rotLeft(integers, rotations);
+            Console.WriteLine("Rotated");
+            correct = integers;
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);*/
+            Console.WriteLine("\nCase 7:");
+            rotations = 10;
+            integers = new int[100000000];
+            integers[50000000] = 1;
+            Console.WriteLine("Created");
+            rotationsToLeft = rotLeft(integers, rotations);
+            Console.WriteLine("Rotated");
+            correct = new int[100000000];
+            correct[50000000-10] = 1;
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 8:");
+            rotations = 10;
+            integers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 9:");
+            rotations = 4;
+            integers = new int[] { -1, -2, -2147483647, -4, -5 };
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[] { -5, -1, -2, -2147483647, -4 };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 10:");
+            rotations = 4;
+            integers = new int[] { -1, 2147483647, -3, 4, -5 };
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[] { -5, -1, 2147483647, -3, 4 };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 11:");
+            rotations = 4;
+            integers = new int[] { -1, 2, -3, 4, -5, 0 };
+            rotationsToLeft = rotLeft(integers, rotations);
+            displayArray(rotationsToLeft);
+            correct = new int[] { -5, 0, -1, 2, -3, 4 };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);
+        }
 
         static void displayArray(int[] arr)
         {
@@ -85,38 +187,36 @@ namespace Assignment2_S19
             {
                 Console.Write(n + " ");
             }
-            Console.ReadKey(true);
         }
 
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {
-
+            /*
+                Case 1: Error because of MaxValue of int!, Please take Math.Abs(c)
+                Case 3: Error if d < 0, Please check if (d >= 0)
+                Case 5: Error if a = null, Please Use IsNullOrEmpty() that I coded below
+                Case 6: int[] labels = new int[a.Length]; should be inside a try-catch block to catch outOfMemoryException
+            */
             int[] labels = new int[a.Length];   // new array to store the values
             try
             {
+                /// Could you explain what c means?
                 int c;
                 for (int i = 0; i < a.Length; i++)
                 {
                     c = (i + d) % a.Length;
+                    ///c = Math.Abs(c);
                     labels[i] = a[c];
-
-
                 }
-
-
-
             }
             catch
             {
                 Console.WriteLine("error");
+                ///return a;
             }
             return labels;                      // return the rotated array
         }
-
-
-
-
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int budget)
@@ -204,9 +304,10 @@ namespace Assignment2_S19
         }
 
         // Complete the balancedSums function below.
-       static string balancedSums(List<int> arr)
+        static string balancedSums(List<int> arr)
         {
-            try {
+            try
+            {
                 int n = arr.Count;
 
                 int[] Sample = arr.ToArray();
@@ -267,9 +368,8 @@ namespace Assignment2_S19
                 Console.WriteLine("error");
             }
             return "";
-            }
-    }
-}
+        }
+
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] incompleteArray, int[] originalArray)
         {
@@ -462,22 +562,11 @@ namespace Assignment2_S19
             return 0;
         }
 
-
-
-        // Complete the closestNumbers function below.
-       static void displayArray(int[] arr)
-        {
-            Console.WriteLine();
-            foreach (int n in arr)
-            {
-                Console.Write(n + " ");
-            }
-        }
-
         static int[] closestNumbers(int[] arr)
         {
-            try {
-                
+            try
+            {
+
                 int count = arr.Count();
                 int[] GivenInput = arr;
 
@@ -486,9 +575,9 @@ namespace Assignment2_S19
                 {
                     Listing_Array[i] = Convert.ToInt32(GivenInput[i]);
                 }
-               //Our method to be used here didnot work when i tried separately
+                //Our method to be used here didnot work when i tried separately
                 Array.Sort(Listing_Array);
-    
+
 
                 var Output = new List<int>();
                 int min = Math.Abs(Listing_Array[1] - Listing_Array[0]);
@@ -521,47 +610,47 @@ namespace Assignment2_S19
 
             return new int[] { };
         }
-    
+
 
 
 
         // Complete the dayOfProgrammer function below.
-    static string dayOfProgrammer(int year)
-    
-    {
-        try 
-    { 
-        if (year >= 1919)
+        static string dayOfProgrammer(int year)
+
         {
-            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+            try
             {
-                return "12.09." + year;
+                if (year >= 1919)
+                {
+                    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+                    {
+                        return "12.09." + year;
+                    }
+                    else
+                        return "13.09." + year;
+                }
+                else if (year == 1918)
+                {
+                    return "26.09.1918";
+                }
+                else
+                {
+                    if (year % 4 == 0)
+                    {
+                        return "12.09." + year;
+                    }
+                    else
+                        return "13.09." + year;
+                }
             }
-            else
-                return "13.09." + year;
-        }
-        else if (year == 1918)
-        {
-            return "26.09.1918";
-        }
-        else
-        {
-            if (year % 4 == 0)
-            {
-                return "12.09." + year;
-            }
-            else
-                return "13.09." + year;
-        }
-    }
             catch
-        {
-            Console.WriteLine("error");
-         
+            {
+                Console.WriteLine("error");
+
+            }
+            return "";
         }
-        return "";
-    }
-    
+
 
 
 
