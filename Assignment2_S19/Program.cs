@@ -2,8 +2,8 @@
     Project  : Assignment 2 – Computational Problem Solving
     Coded by :
                Sameera - P1, P5, P6 (Reviewed by Alhasan)
-               Vivek - P3, P7, P8 (Reviewed by Sameera)
-               Alhasan - P2, P4, Sort() Algorithm (Reviewed by Vivek)
+               Vivek - P3, P7, P8 (Reviewed by Alhasan)
+               Alhasan - P2, P4, Sort() Algorithm (Reviewed by Sameera)
     Summary  : This C# Console application code is a group assignment
                that focuses tightly on problem solving and using basic sorting algorithms.
                It includes different methods:
