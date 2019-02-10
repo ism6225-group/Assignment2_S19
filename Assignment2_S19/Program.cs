@@ -76,7 +76,7 @@ namespace Assignment2_S19
             */
 
             // Testing left rotation
-            Console.WriteLine("Left Rotation");
+            /*Console.WriteLine("Left Rotation");
             Console.WriteLine("\nCase 1:");
             int rotations = 2147483644;
             int[] integers = { 1, 2, 3, 4, 5 };
@@ -103,7 +103,7 @@ namespace Assignment2_S19
             correct = new int[] { 1, 2, 3, 4, 5 };
             displayArray(correct);
             Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);*/
+            Console.ReadKey(true);
             Console.WriteLine("\nCase 4:");
             rotations = 10;
             integers = new int[0];
@@ -130,7 +130,7 @@ namespace Assignment2_S19
             Console.WriteLine("Rotated");
             correct = integers;
             Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);*/
+            Console.ReadKey(true);
             Console.WriteLine("\nCase 7:");
             rotations = 10;
             integers = new int[100000000];
@@ -139,7 +139,7 @@ namespace Assignment2_S19
             rotationsToLeft = rotLeft(integers, rotations);
             Console.WriteLine("Rotated");
             correct = new int[100000000];
-            correct[50000000-10] = 1;
+            correct[50000000 - 10] = 1;
             Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
             Console.ReadKey(true);
             Console.WriteLine("\nCase 8:");
@@ -177,6 +177,61 @@ namespace Assignment2_S19
             correct = new int[] { -5, 0, -1, 2, -3, 4 };
             displayArray(correct);
             Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
+            Console.ReadKey(true);*/
+            Console.WriteLine("\n\nGrading students");
+            Console.WriteLine("\nCase 1:");
+            int[] grades = new int[0];
+            int[] roundedGrades = gradingStudents(grades);
+            displayArray(roundedGrades);
+            int[] correct = new int[] { };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(roundedGrades));
+            Console.ReadKey(true);
+            /*Console.WriteLine("\nCase 2:");
+            grades = null;
+            roundedGrades = gradingStudents(grades);
+            displayArray(roundedGrades);
+            correct = new int[] { };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(roundedGrades));
+            Console.ReadKey(true);*/
+            /*Console.WriteLine("\nCase 3:");
+            grades = new int[447483647];
+            roundedGrades = gradingStudents(grades);
+            correct = roundedGrades;
+            Console.WriteLine(correct.SequenceEqual(roundedGrades));
+            Console.ReadKey(true);*/
+            Console.WriteLine("\nCase 4:");
+            grades = new int[100000000];
+            grades[100000000 - 1] = 33;
+            grades[100000000 - 2] = 38;
+            grades[100000000 - 3] = 67;
+            grades[100000000 - 3] = 66;
+            grades[100000000 - 4] = 84;
+            roundedGrades = gradingStudents(grades);
+            correct = new int[100000000];
+            correct[100000000 - 1] = 33;
+            correct[100000000 - 2] = 40;
+            correct[100000000 - 3] = 67;
+            correct[100000000 - 3] = 66;
+            correct[100000000 - 4] = 85;
+            Console.WriteLine(correct.SequenceEqual(roundedGrades));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 5:");
+            grades = new int[] { -73, -67, -38, 33 };
+            roundedGrades = gradingStudents(grades);
+            displayArray(roundedGrades);
+            correct = new int[] { };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(roundedGrades));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 6:");
+            grades = new int[] { 101, 200, 300, 400 };
+            roundedGrades = gradingStudents(grades);
+            displayArray(roundedGrades);
+            correct = new int[] { };
+            displayArray(correct);
+            Console.WriteLine(correct.SequenceEqual(roundedGrades));
             Console.ReadKey(true);
         }
 
@@ -492,6 +547,12 @@ namespace Assignment2_S19
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
+            /*
+                Case 2: Error if grades = null, Please Use IsNullOrEmpty() that I coded below
+                Case 3: Error because int[] marks = new int[grades.Length]; should be inside a try-catch block to catch outOfMemoryException
+                Case 5: Please check if (grades[i] >= 0), if (grades[i] < 0) then return a message of invalid grades!
+                Case 6: Please check if (grades[i] <= 100), if (grades[i] > 100) then return a message of invalid grades!
+            */
             int score = 0;
             int[] marks = new int[grades.Length];
             for (int i = 0; i < grades.Length; i++)
@@ -506,8 +567,6 @@ namespace Assignment2_S19
                 }
             }
             return marks;
-            Console.ReadKey(true);
-            //return 0;
         }
 
         // Complete the findMedian function below.
