@@ -177,7 +177,8 @@ namespace Assignment2_S19
             correct = new int[] { -5, 0, -1, 2, -3, 4 };
             displayArray(correct);
             Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);*/
+            Console.ReadKey(true);
+            // Testing Grading Students
             Console.WriteLine("\n\nGrading students");
             Console.WriteLine("\nCase 1:");
             int[] grades = new int[0];
@@ -200,7 +201,7 @@ namespace Assignment2_S19
             roundedGrades = gradingStudents(grades);
             correct = roundedGrades;
             Console.WriteLine(correct.SequenceEqual(roundedGrades));
-            Console.ReadKey(true);*/
+            Console.ReadKey(true);
             Console.WriteLine("\nCase 4:");
             grades = new int[100000000];
             grades[100000000 - 1] = 33;
@@ -232,6 +233,45 @@ namespace Assignment2_S19
             correct = new int[] { };
             displayArray(correct);
             Console.WriteLine(correct.SequenceEqual(roundedGrades));
+            Console.ReadKey(true);*/
+            // Testing Find the median
+            Console.WriteLine("\n\nFind the median");
+            Console.WriteLine("\nCase 1:");
+            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
+            Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 2:");
+            arr2 = new int[] { };
+            Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 3:");
+            arr2 = null;
+            Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);
+            /*Console.WriteLine("\nCase 4:");
+            arr2 = new int[447483647];
+            for (int i = 223741824; i < arr2.Length; i++)
+            {
+                arr2[i] = 2;
+            }
+            arr2[223741823] = 1;
+            Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);*/
+            Console.WriteLine("\nCase 5:");
+            arr2 = new int[] { 0, 1, 2, 3, 6, 5};
+            Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 6:");
+            arr2 = new int[] { 0, 1, 2, 4, 6, 5 };
+            Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 7:");
+            arr2 = new int[] { -1, 2147483647, -3, 0, 5 };
+            Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 8:");
+            arr2 = new int[] { -1, -2147483647, -3, 0, -5 };
+            Console.WriteLine(findMedian(arr2));
             Console.ReadKey(true);
         }
 
@@ -559,7 +599,6 @@ namespace Assignment2_S19
             {
                 score = ((grades[i] / 5) + 1) * 5;
                 if (score - grades[i] < 3 && grades[i] > 37)            //checking the condition if lesser than 40 and meeting expectation
-
                     marks[i] = score;
                 else
                 {
@@ -572,47 +611,42 @@ namespace Assignment2_S19
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-
-
+            /*
+                Case 2: Error if arr is Empty, Please Use IsNullOrEmpty() that I coded below
+                Case 3: Error if arr = null, Please Use IsNullOrEmpty() that I coded below
+                Case 5: If arr is even and Median is not integer "2.5", Please show a message that the right Median is (#) and cannot return it because it is not integer!
+                Case 6: If arr is even and Median is integer "3", return it!
+            */
             try
             {
-
                 int count = arr.Length;
                 int[] SortedArray = Sort(arr);  //using the sort method created below
-
-
-                // new []arr1 = new int arr[]{ };
                 int medianValue = 0;
-
-
-
                 if (count % 2 == 0)
-
                 {
-
                     //if count is even
                     int no1 = SortedArray[(count / 2) - 1];
-
                     int no2 = SortedArray[(count / 2)];
-
+                    /// For case 5 and case 6 use the following code :)
+                    /*
+                    double medianValueDouble = (no1 + no2) / 2.0;
+                    medianValue = Convert.ToInt32(medianValueDouble);
+                    /// If median is not integer, we show a message and return 0
+                    if (medianValueDouble != medianValue)
+                    {
+                        Console.WriteLine("The Median is {0} and cannot return it because it is not integer!", medianValueDouble);
+                        medianValue = 0;
+                    }
+                    */
+                    /// Delete the following line
                     medianValue = (no1 + no2) / 2;
-
                 }
-
                 else
-
                 {
-
                     // if count is odd
                     medianValue = SortedArray[(count / 2)];
-
                 }
-
-
                 return medianValue;
-
-                Console.WriteLine("press any key");
-                Console.ReadKey(true);
             }
             catch
             {
