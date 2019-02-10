@@ -235,7 +235,7 @@ namespace Assignment2_S19
             Console.WriteLine(correct.SequenceEqual(roundedGrades));
             Console.ReadKey(true);*/
             // Testing Find the median
-            Console.WriteLine("\n\nFind the median");
+            /*Console.WriteLine("\n\nFind the median");
             Console.WriteLine("\nCase 1:");
             int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
             Console.WriteLine(findMedian(arr2));
@@ -256,7 +256,7 @@ namespace Assignment2_S19
             }
             arr2[223741823] = 1;
             Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);*/
+            Console.ReadKey(true);
             Console.WriteLine("\nCase 5:");
             arr2 = new int[] { 0, 1, 2, 3, 6, 5};
             Console.WriteLine(findMedian(arr2));
@@ -272,6 +272,52 @@ namespace Assignment2_S19
             Console.WriteLine("\nCase 8:");
             arr2 = new int[] { -1, -2147483647, -3, 0, -5 };
             Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);*/
+            // Testing Balanced sums
+            Console.WriteLine("\n\nBalanced sums");
+            Console.WriteLine("\nCase 1:");
+            List<int> arr = new List<int> { 1, 2, 3 };
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 2:");
+            arr = new List<int> { 5, 6, 8, 11 };
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 3:");
+            arr = new List<int>();
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 4:");
+            arr = null;
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 5:");
+            arr = new List<int> { -1, -1, 0};
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 6:");
+            arr = new List<int> { 0, -1, -1 };
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 7:");
+            arr = new List<int> { -1, -2, -3 };
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 8:");
+            arr = new List<int> { -1, 1, -1, 1 };
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 9:");
+            arr = new List<int> { -1, 3, -1, 3 };
+            Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 10:");
+            arr = new List<int>(447483647);
+            for (int i = 0; i < arr.Capacity; i++)
+            {
+                arr.Add(0);
+            }
+            Console.WriteLine(balancedSums(arr));
             Console.ReadKey(true);
         }
 
@@ -401,6 +447,13 @@ namespace Assignment2_S19
         // Complete the balancedSums function below.
         static string balancedSums(List<int> arr)
         {
+            /*
+                Case 3: Error if arr is Empty, Please Use IsNullOrEmpty() that I coded below
+                Case 4: Error if arr = null, Please Use IsNullOrEmpty() that I coded below
+                Case 5, 6, 7, 8: Incorrect and always YES output! when compare of negative with zero. Do you consider negative sum same as zero?
+                Case 9: Correct! because there is no compare of negative with zero
+                Case 10: Error because of Memory Allocation! your code consumes so much memory! Please don't Convert List to Array"
+            */
             try
             {
                 int n = arr.Count;
@@ -668,7 +721,6 @@ namespace Assignment2_S19
                 {
                     Listing_Array[i] = Convert.ToInt32(GivenInput[i]);
                 }
-                //Array.Sort(Listing_Array);
                 int[] Sorted = Sort(Listing_Array);
 
                 var Output = new List<int>();
@@ -702,9 +754,6 @@ namespace Assignment2_S19
 
             return new int[] { };
         }
-
-
-
 
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
@@ -742,12 +791,6 @@ namespace Assignment2_S19
             }
             return "";
         }
-
-
-
-
-
-
 
         // To skip sort in sum cases
         private static int[] Sort(int[] array)
@@ -820,6 +863,16 @@ namespace Assignment2_S19
         private static bool IsNullOrEmpty(int[] array)
         {
             if (array == null || array.Length == 0)
+            {
+                Console.WriteLine("This is a null or empty array!");
+                return true;
+            }
+            return false;
+        }
+
+        private static bool IsNullOrEmpty(List<int> array)
+        {
+            if (array == null || array.Count == 0)
             {
                 Console.WriteLine("This is a null or empty array!");
                 return true;
