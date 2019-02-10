@@ -16,6 +16,19 @@
                 7. Closest numbers
                 8. Day of Programmer
 */
+
+
+/*Self Reflection */
+/* There were 8 codes 
+ * Issues faced: Testing corner cases .
+ * Example: For Left Rotations, the value of rotations is negative
+ * The size of Array is extremely big !
+ * The entered values are beyond the given range
+ * They do not match either of the given condition
+ Resolution time: 3 seconds on every code
+ Successful : Yes*/
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +39,7 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
-            /* Original Main
+            // Original Main
             // left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
@@ -62,6 +75,7 @@ namespace Assignment2_S19
             Console.WriteLine("\n\nFind the median");
             int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
             Console.WriteLine(findMedian(arr2));
+            Console.ReadKey(true);
 
             // closest numbers
             Console.WriteLine("\n\nClosest numbers");
@@ -73,7 +87,7 @@ namespace Assignment2_S19
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
-            */
+            
 
             // Testing left rotation
             /*Console.WriteLine("Left Rotation");
@@ -235,7 +249,7 @@ namespace Assignment2_S19
             Console.WriteLine(correct.SequenceEqual(roundedGrades));
             Console.ReadKey(true);*/
             // Testing Find the median
-            Console.WriteLine("\n\nFind the median");
+           /* Console.WriteLine("\n\nFind the median");
             Console.WriteLine("\nCase 1:");
             int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
             Console.WriteLine(findMedian(arr2));
@@ -285,33 +299,47 @@ namespace Assignment2_S19
         }
 
         // Complete the rotLeft function below.
+       
         static int[] rotLeft(int[] a, int d)
         {
-            /*
-                Case 1: Error because of MaxValue of int!, Please take Math.Abs(c)
-                Case 3: Error if d < 0, Please check if (d >= 0)
-                Case 5: Error if a = null, Please Use IsNullOrEmpty() that I coded below
-                Case 6: int[] labels = new int[a.Length]; should be inside a try-catch block to catch outOfMemoryException
-            */
-            int[] labels = new int[a.Length];   // new array to store the values
+
+            int[] labels = new int[0];              //creating new array to store the values
+        
             try
             {
-                /// Could you explain what c means?
-                int c;
+
+
+                labels = new int[a.Length];
+                
+                int count_of_rotation;
+                if (d < 0)
+                {
+                    count_of_rotation = 0;
+
+                }
+                else if (IsNullOrEmpty(a))
+                {
+                    count_of_rotation = 0;
+                }
+
                 for (int i = 0; i < a.Length; i++)
                 {
-                    c = (i + d) % a.Length;
-                    ///c = Math.Abs(c);
-                    labels[i] = a[c];
+                    count_of_rotation = (i + d) % a.Length;
+                    count_of_rotation = Math.Abs(count_of_rotation);
+                    labels[i] = a[count_of_rotation];
                 }
+               
             }
             catch
             {
-                Console.WriteLine("error");
-                ///return a;
+                Console.WriteLine("This is a huge array and consumes so much memory,\n");
+                
             }
-            return labels;                      // return the rotated array
+            return labels;         // return the rotated array
+            Console.ReadKey(true);
         }
+
+
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int budget)
@@ -587,48 +615,75 @@ namespace Assignment2_S19
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            /*
-                Case 2: Error if grades = null, Please Use IsNullOrEmpty() that I coded below
-                Case 3: Error because int[] marks = new int[grades.Length]; should be inside a try-catch block to catch outOfMemoryException
-                Case 5: Please check if (grades[i] >= 0), if (grades[i] < 0) then return a message of invalid grades!
-                Case 6: Please check if (grades[i] <= 100), if (grades[i] > 100) then return a message of invalid grades!
-            */
-            int score = 0;
-            int[] marks = new int[grades.Length];
-            for (int i = 0; i < grades.Length; i++)
+            int[] marks = new int[0];
+            try
             {
-                score = ((grades[i] / 5) + 1) * 5;
-                if (score - grades[i] < 3 && grades[i] > 37)            //checking the condition if lesser than 40 and meeting expectation
-                    marks[i] = score;
-                else
+                int score = 0;
+                marks = new int[grades.Length];         // creating new array to store marks
+
+                if (IsNullOrEmpty(grades))
                 {
-                    marks[i] = grades[i];
+                    Console.WriteLine("Please enter positive values");
+                }
+
+
+
+                for (int i = 0; i < grades.Length; i++)
+                {
+                    if (grades[i] < 0)                      // if entered marks are lesser than zero
+                    {
+                        Console.WriteLine("The grade entered is lesser than 0, Hence converting it to 0");
+                        continue;
+
+                    }
+                    else if (grades[i] > 100)               // if entered marks are greater than 100
+                    {
+                        Console.WriteLine("The grade" + grades[i], " greater than 100, Hence converting it to 0");
+                        continue;
+                    }
+                    score = ((grades[i] / 5) + 1) * 5;
+                    if (score - grades[i] < 3 && grades[i] > 37)            //checking the condition if lesser than 40 and meeting expectation
+
+                        marks[i] = score;                       // store the scores
+                    else
+                    {
+                        marks[i] = grades[i];
+                    }
                 }
             }
+            catch
+            {
+                Console.WriteLine("This is a huge array and consumes so much memory,\n");
+            }
             return marks;
+            Console.ReadKey(true);
+           
         }
 
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-            /*
-                Case 2: Error if arr is Empty, Please Use IsNullOrEmpty() that I coded below
-                Case 3: Error if arr = null, Please Use IsNullOrEmpty() that I coded below
-                Case 5: If arr is even and Median is not integer "2.5", Please show a message that the right Median is (#) and cannot return it because it is not integer!
-                Case 6: If arr is even and Median is integer "3", return it!
-            */
+
             try
             {
+
                 int count = arr.Length;
                 int[] SortedArray = Sort(arr);  //using the sort method created below
+
+
+                // new []arr1 = new int arr[]{ };
                 int medianValue = 0;
+
                 if (count % 2 == 0)
+
                 {
+
                     //if count is even
                     int no1 = SortedArray[(count / 2) - 1];
+
                     int no2 = SortedArray[(count / 2)];
-                    /// For case 5 and case 6 use the following code :)
-                    /*
+
+
                     double medianValueDouble = (no1 + no2) / 2.0;
                     medianValue = Convert.ToInt32(medianValueDouble);
                     /// If median is not integer, we show a message and return 0
@@ -637,20 +692,27 @@ namespace Assignment2_S19
                         Console.WriteLine("The Median is {0} and cannot return it because it is not integer!", medianValueDouble);
                         medianValue = 0;
                     }
-                    */
-                    /// Delete the following line
-                    medianValue = (no1 + no2) / 2;
+
+
                 }
+
                 else
+
                 {
+
                     // if count is odd
                     medianValue = SortedArray[(count / 2)];
+
                 }
+
                 return medianValue;
+
+         
+
             }
             catch
             {
-                Console.WriteLine("error");
+                Console.WriteLine("This is a huge array and consumes so much memory,\n");
             }
             return 0;
         }
