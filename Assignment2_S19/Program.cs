@@ -36,13 +36,14 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
-            /* Original Main
+            // Original Main
             // left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
             int[] a = { 1, 2, 3, 4, 5 };
             int[] r = rotLeft(a, d);
             displayArray(r);
+            Console.ReadKey();
 
             // Maximum toys
             Console.WriteLine("\n\nMaximum toys");
@@ -83,7 +84,7 @@ namespace Assignment2_S19
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
-            */
+            
 
             // Testing left rotation
             /*Console.WriteLine("Left Rotation");
@@ -114,7 +115,7 @@ namespace Assignment2_S19
             displayArray(correct);
             Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
             Console.ReadKey(true);
-            Console.WriteLine("\nCase 4:");
+           /* Console.WriteLine("\nCase 4:");
             rotations = 10;
             integers = new int[0];
             rotationsToLeft = rotLeft(integers, rotations);
@@ -332,7 +333,7 @@ namespace Assignment2_S19
             }
             Console.WriteLine(balancedSums(arr));
             Console.ReadKey(true);*/
-
+            /*
             // Testing closest numbers
             Console.WriteLine("\n\nClosest numbers");
             Console.WriteLine("\nCase 1:");
@@ -370,12 +371,13 @@ namespace Assignment2_S19
             arr3[200000000 - 2] = 0;
             r4 = closestNumbers(arr3);
             displayArray(r4);
-            Console.ReadKey(true);*/
+            Console.ReadKey(true);
             Console.WriteLine("\nCase 7:");
             arr3 = new int[] { -20, -2147483647, -2147483647, 2147483647, -7330761, 30, 2147483647, -520, -470 };
             r4 = closestNumbers(arr3);
             displayArray(r4);
-            Console.ReadKey(true);
+            Console.ReadKey(true);*/
+            
         }
 
         static void displayArray(int[] arr)
@@ -403,6 +405,7 @@ namespace Assignment2_S19
                 {
                     count_of_rotation = 0;
                 }
+                else
                 for (int i = 0; i < a.Length; i++)
                 {
                     count_of_rotation = (i + d) % a.Length;
