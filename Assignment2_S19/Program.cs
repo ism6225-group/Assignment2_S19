@@ -188,6 +188,7 @@ namespace Assignment2_S19
             displayArray(correct);
             Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
             Console.ReadKey(true);*/
+
             // Testing Grading Students
             /*Console.WriteLine("\n\nGrading students");
             Console.WriteLine("\nCase 1:");
@@ -244,6 +245,7 @@ namespace Assignment2_S19
             displayArray(correct);
             Console.WriteLine(correct.SequenceEqual(roundedGrades));
             Console.ReadKey(true);*/
+
             // Testing Find the median
             /*Console.WriteLine("\n\nFind the median");
             Console.WriteLine("\nCase 1:");
@@ -283,8 +285,9 @@ namespace Assignment2_S19
             arr2 = new int[] { -1, -2147483647, -3, 0, -5 };
             Console.WriteLine(findMedian(arr2));
             Console.ReadKey(true);*/
+
             // Testing Balanced sums
-            Console.WriteLine("\n\nBalanced sums");
+            /*Console.WriteLine("\n\nBalanced sums");
             Console.WriteLine("\nCase 1:");
             List<int> arr = new List<int> { 1, 2, 3 };
             Console.WriteLine(balancedSums(arr));
@@ -328,6 +331,50 @@ namespace Assignment2_S19
                 arr.Add(0);
             }
             Console.WriteLine(balancedSums(arr));
+            Console.ReadKey(true);*/
+
+            // Testing closest numbers
+            Console.WriteLine("\n\nClosest numbers");
+            Console.WriteLine("\nCase 1:");
+            int[] arr3 = { 5, 4, 3, 2 };
+            int[] r4 = closestNumbers(arr3);
+            displayArray(r4);
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 2:");
+            arr3 = new int[] { };
+            r4 = closestNumbers(arr3);
+            displayArray(r4);
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 3:");
+            arr3 = null;
+            r4 = closestNumbers(arr3);
+            displayArray(r4);
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 4:");
+            arr3 = new int[] { -20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470 };
+            r4 = closestNumbers(arr3);
+            displayArray(r4);
+            Console.ReadKey(true);
+            Console.WriteLine("\nCase 5:");
+            arr3 = new int[] { 1, 2, 0, 0 };
+            r4 = closestNumbers(arr3);
+            displayArray(r4);
+            Console.ReadKey(true);
+            /*Console.WriteLine("\nCase 6:");
+            arr3 = new int[200000000];
+            for (int i = 0; i < arr3.Length; i++)
+            {
+                arr3[i] = i+1;
+            }
+            arr3[200000000 - 1] = 0;
+            arr3[200000000 - 2] = 0;
+            r4 = closestNumbers(arr3);
+            displayArray(r4);
+            Console.ReadKey(true);*/
+            Console.WriteLine("\nCase 7:");
+            arr3 = new int[] { -20, -2147483647, -2147483647, 2147483647, -7330761, 30, 2147483647, -520, -470 };
+            r4 = closestNumbers(arr3);
+            displayArray(r4);
             Console.ReadKey(true);
         }
 
@@ -363,9 +410,13 @@ namespace Assignment2_S19
                     labels[i] = a[count_of_rotation];
                 }
             }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
+            }
             catch
             {
-                Console.WriteLine("This is a huge array and consumes so much memory,\n");
+                Console.WriteLine("Exception occured while computing rotLeft()");
             }
             return labels;         // return the rotated array
         }
@@ -448,6 +499,10 @@ namespace Assignment2_S19
                 }
                 Console.WriteLine();
             }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
+            }
             catch
             {
                 Console.WriteLine("Exception occured while computing maximumToys()");
@@ -467,64 +522,71 @@ namespace Assignment2_S19
             */
             try
             {
-                int n = arr.Count;
-
-                int[] Sample = arr.ToArray();
-                //total sum of given array
-                int ADDStorage = 0;
-                for (int x = 0; x < Sample.Length; x++)
+                if (!IsNullOrEmpty(arr))
                 {
-                    ADDStorage = ADDStorage + Sample[x];
+                    int n = arr.Count;
 
-                }
+                    int[] Sample = arr.ToArray();
+                    //total sum of given array
+                    int ADDStorage = 0;
+                    for (int x = 0; x < Sample.Length; x++)
+                    {
+                        ADDStorage = ADDStorage + Sample[x];
 
-                int[] Storage = new int[n];
-                Storage[0] = Sample[0];
-                for (int i = 1; i < n; i++)
-                {
-                    Storage[i] = Storage[i - 1] + Sample[i];
-                }
-                bool test = false;
-                if (n == 1)
-                    test = true;
+                    }
 
-
-                int totalStorage = ADDStorage;
-                if (totalStorage > 0)
-                {
-                    //comparing left and right array
+                    int[] Storage = new int[n];
+                    Storage[0] = Sample[0];
                     for (int i = 1; i < n; i++)
                     {
-                        int left_array = Storage[i - 1];
-                        int right_array = Storage[n - 1] - Storage[i];
-                        if (left_array == right_array)
+                        Storage[i] = Storage[i - 1] + Sample[i];
+                    }
+                    bool test = false;
+                    if (n == 1)
+                        test = true;
+
+
+                    int totalStorage = ADDStorage;
+                    if (totalStorage > 0)
+                    {
+                        //comparing left and right array
+                        for (int i = 1; i < n; i++)
                         {
-                            test = true;
-                            break;
+                            int left_array = Storage[i - 1];
+                            int right_array = Storage[n - 1] - Storage[i];
+                            if (left_array == right_array)
+                            {
+                                test = true;
+                                break;
+                            }
                         }
                     }
-                }
-                else
-                    test = true;
-                //checking for conditions where 1st position of array has a number and rest of the array is 0
-                for (int i = 0; i < n; i++)
-                {
-                    if (totalStorage == Sample[i])
-                    {
+                    else
                         test = true;
+                    //checking for conditions where 1st position of array has a number and rest of the array is 0
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (totalStorage == Sample[i])
+                        {
+                            test = true;
+                        }
                     }
-                }
 
-                if (test)
-                {
-                    return "YES";
+                    if (test)
+                    {
+                        return "YES";
+                    }
+                    else
+                        return "NO";
                 }
-                else
-                    return "NO";
+            }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
             }
             catch
             {
-                Console.WriteLine("error");
+                Console.WriteLine("Exception occured while computing maximumToys()");
             }
             return "";
         }
@@ -686,8 +748,6 @@ namespace Assignment2_S19
                 Console.WriteLine("This is a huge array and consumes so much memory,\n");
             }
             return marks;
-            Console.ReadKey(true);
-
         }
 
         // Complete the findMedian function below.
@@ -730,9 +790,16 @@ namespace Assignment2_S19
 
         static int[] closestNumbers(int[] arr)
         {
+            /*
+                Solved This method does not return an array, it prints the output. I changed the code to save in array and return it
+                Case 2: Solved - Error if arr is Empty, Please Use IsNullOrEmpty() that I coded below
+                Case 3: Solved - Error if arr = null, Please Use IsNullOrEmpty() that I coded below
+            */
+            int[] pairs = new int[0];
             try
             {
-                //var count = 10;
+                /// Delete the following code :)
+                /*
                 int count = arr.Count();
                 int[] GivenInput = arr;
 
@@ -741,43 +808,51 @@ namespace Assignment2_S19
                 {
                     Listing_Array[i] = Convert.ToInt32(GivenInput[i]);
                 }
-                int[] Sorted = Sort(Listing_Array);
-
-                var Output = new List<int>();
-                int min = Math.Abs(Sorted[1] - Sorted[0]);
-                int ComparedResult = min;
-                for (int i = 0, j = 1; j < count; i++, j++)
+                */
+                if (!IsNullOrEmpty(arr))
                 {
-                    if ((ComparedResult = Math.Abs(Sorted[j] - Sorted[i])) <= min)
-                    {
+                    /// Sort the arr directly!
+                    int[] Sorted = Sort(arr);
 
-                        if (min != ComparedResult)
-                            Output.Clear();
-                        Output.Add(i);
-                        Output.Add(j);
-                        min = ComparedResult;
+                    var pairsIndeces = new List<int>();
+                    int min = Math.Abs(Sorted[1] - Sorted[0]);
+                    int ComparedResult = min;
+                    for (int i = 0, j = 1; j < arr.Length; i++, j++)
+                    {
+                        if ((ComparedResult = Math.Abs(Sorted[j] - Sorted[i])) <= min)
+                        {
+
+                            if (min != ComparedResult)
+                                pairsIndeces.Clear();
+                            pairsIndeces.Add(i);
+                            pairsIndeces.Add(j);
+                            min = ComparedResult;
+                        }
+                    }
+                    /// Save in array and return it
+                    pairs = new int[pairsIndeces.Count];
+                    for (int i = 0; i < pairsIndeces.Count; i++)
+                    {
+                        pairs[i] = Sorted[pairsIndeces[i]];
+                        /// Delete Console.Write(Sorted[Output[i]] + " ");
                     }
                 }
-                for (int i = 0; i < Output.Count; i++)
-                {
-                    Console.Write(Sorted[Output[i]] + " ");
-                }
 
-
-
-                return new int[] { };
+                return pairs;
+            }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
             }
             catch
             {
-                Console.WriteLine("error");
+                Console.WriteLine("Exception occured while computing balancedSums()");
             }
-
-            return new int[] { };
+            return pairs;
         }
 
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
-
         {
             try
             {
@@ -804,10 +879,13 @@ namespace Assignment2_S19
                         return "13.09." + year;
                 }
             }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
+            }
             catch
             {
-                Console.WriteLine("error");
-
+                Console.WriteLine("Exception occured while computing dayOfProgrammer()");
             }
             return "";
         }
@@ -832,11 +910,17 @@ namespace Assignment2_S19
                     int[] toSortArray = (int[])array.Clone();
                     return QuickSort(toSortArray, left, right);
                 }
-                catch
+
+                catch (OutOfMemoryException)
                 {
                     Console.WriteLine("This is a huge array and consumes so much memory,\n" +
                         "Sort() will change the array itself without cloning!");
                     return QuickSort(array, left, right);
+                }
+                catch
+                {
+                    Console.WriteLine("Exception occured while computing Sort()");
+                    return array;
                 }
             }
         }
@@ -847,39 +931,70 @@ namespace Assignment2_S19
         */
         private static int[] QuickSort(int[] array, int left, int right)
         {
-            int iLeft = left;
-            int iRight = right;
-            int pivot = array[left];
-            while (iLeft <= iRight)
+            try
             {
-                while (array[iLeft] < pivot)
+                int iLeft = left;
+                int iRight = right;
+                double pivotValue = left + ((right - left) / 2);
+                int pivot = array[Convert.ToInt32(pivotValue)];
+                //int pivot = array[left];
+                while (iLeft <= iRight)
                 {
-                    iLeft++;
+                    while (array[iLeft] < pivot)
+                    {
+                        iLeft++;
+                    }
+                    while (array[iRight] > pivot)
+                    {
+                        iRight--;
+                    }
+                    if (iLeft <= iRight)
+                    {
+                        int temp = array[iLeft];
+                        array[iLeft] = array[iRight];
+                        iLeft++;
+                        array[iRight] = temp;
+                        iRight--;
+                    }
                 }
-                while (array[iRight] > pivot)
+                if (left < iRight)
                 {
-                    iRight--;
+                    QuickSort(array, left, iRight);
                 }
-                if (iLeft <= iRight)
+                if (iLeft < right)
                 {
-                    int temp = array[iLeft];
-                    array[iLeft] = array[iRight];
-                    iLeft++;
-                    array[iRight] = temp;
-                    iRight--;
+                    QuickSort(array, iLeft, right);
+                }
+                return array;
+            }
+            catch
+            {
+                Console.WriteLine("Hold on, we will Sort using in BubbleSort Algorithm");
+                return BubbleSort(array);
+            }
+        }
+        /*
+            An implementation of BubbleSort Algorithm used if Exception occured while computing QuickSort() 
+            Source: https://github.com/ISM6225/Sort/blob/master/Sort/Program.cs
+        */
+        private static int[] BubbleSort(int[] bs_arr)
+        {
+            for (int i = 0; i < bs_arr.Length - 1; i++)
+            {
+                for (int x = 0; x < bs_arr.Length - i - 1; x++)
+                {
+                    if (bs_arr[x] > bs_arr[x + 1])
+                    {
+                        int temp = bs_arr[x];
+                        bs_arr[x] = bs_arr[x + 1];
+                        bs_arr[x + 1] = temp;
+                    }
                 }
             }
-            if (left < iRight)
-            {
-                QuickSort(array, left, iRight);
-            }
-            if (iLeft < right)
-            {
-                QuickSort(array, iLeft, right);
-            }
-            return array;
+            return bs_arr;
         }
 
+        // A method to check if array is Null Or Empty
         private static bool IsNullOrEmpty(int[] array)
         {
             if (array == null || array.Length == 0)
@@ -890,6 +1005,7 @@ namespace Assignment2_S19
             return false;
         }
 
+        // A method to check if List is Null Or Empty
         private static bool IsNullOrEmpty(List<int> array)
         {
             if (array == null || array.Count == 0)
