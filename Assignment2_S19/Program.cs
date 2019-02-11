@@ -16,7 +16,7 @@
                 7. Closest numbers
                 8. Day of Programmer
     Self Reflection:
-        Sameera Reflection:
+        Sameera's Reflection:
                 There were 8 codes 
                  * Issues faced: Testing corner cases
                  * Example: For Left Rotations, the value of rotations is negative
@@ -25,6 +25,19 @@
                  * They do not match either of the given condition
                  Resolution time: 3 seconds on every code
                  Successful : Yes
+       Vivek's Reflection:
+                * Learned how to solve corner cases like handling empty or null arrays
+                * Got exposure to use of arrays in sorting methods
+                * Got exposed to using predefined methods to solve problems saving time and reducing code length
+                * Learned how to use comparison of two arrays
+                * Learned how to sync,pull,push and work on group projects as a team using Github
+        Alhasan's Reflection:
+                1) Methods names and naming rule violation (The current assignment is an example of such violation)
+                Methods names should start with Capital letters!
+                2) Using System.Linq; simplified some problems 
+                3) Bad implementation of quick sort could cause StackOverFlow!, fortunately I was able to solve it!
+                4) Reviewing and building testcases is much harder than solving the problems! 
+
 */
 using System;
 using System.Collections.Generic;
@@ -36,7 +49,6 @@ namespace Assignment2_S19
     {
         static void Main(string[] args)
         {
-            /* Original Main
             // left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
@@ -83,299 +95,7 @@ namespace Assignment2_S19
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
-            */
 
-            // Testing left rotation
-            /*Console.WriteLine("Left Rotation");
-            Console.WriteLine("\nCase 1:");
-            int rotations = 2147483644;
-            int[] integers = { 1, 2, 3, 4, 5 };
-            int[] rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            int[] correct = { 5, 1, 2, 3, 4 };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 2:");
-            rotations = 0;
-            integers = new int[] { 1, 2, 3, 4, 5 };
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[] { 1, 2, 3, 4, 5 };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 3:");
-            rotations = -1;
-            integers = new int[] { 1, 2, 3, 4, 5 };
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[] { 1, 2, 3, 4, 5 };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 4:");
-            rotations = 10;
-            integers = new int[0];
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[0];
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 5:");
-            rotations = 10;
-            integers = null;
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[] { };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 6:");
-            rotations = 10;
-            integers = new int[447483647];
-            Console.WriteLine("Created");
-            rotationsToLeft = rotLeft(integers, rotations);
-            Console.WriteLine("Rotated");
-            correct = integers;
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 7:");
-            rotations = 10;
-            integers = new int[100000000];
-            integers[50000000] = 1;
-            Console.WriteLine("Created");
-            rotationsToLeft = rotLeft(integers, rotations);
-            Console.WriteLine("Rotated");
-            correct = new int[100000000];
-            correct[50000000 - 10] = 1;
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 8:");
-            rotations = 10;
-            integers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 9:");
-            rotations = 4;
-            integers = new int[] { -1, -2, -2147483647, -4, -5 };
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[] { -5, -1, -2, -2147483647, -4 };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 10:");
-            rotations = 4;
-            integers = new int[] { -1, 2147483647, -3, 4, -5 };
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[] { -5, -1, 2147483647, -3, 4 };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 11:");
-            rotations = 4;
-            integers = new int[] { -1, 2, -3, 4, -5, 0 };
-            rotationsToLeft = rotLeft(integers, rotations);
-            displayArray(rotationsToLeft);
-            correct = new int[] { -5, 0, -1, 2, -3, 4 };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(rotationsToLeft));
-            Console.ReadKey(true);*/
-
-            // Testing Grading Students
-            /*Console.WriteLine("\n\nGrading students");
-            Console.WriteLine("\nCase 1:");
-            int[] grades = new int[0];
-            int[] roundedGrades = gradingStudents(grades);
-            displayArray(roundedGrades);
-            int[] correct = new int[] { };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(roundedGrades));
-            Console.ReadKey(true);
-            /*Console.WriteLine("\nCase 2:");
-            grades = null;
-            roundedGrades = gradingStudents(grades);
-            displayArray(roundedGrades);
-            correct = new int[] { };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(roundedGrades));
-            Console.ReadKey(true);*/
-            /*Console.WriteLine("\nCase 3:");
-            grades = new int[447483647];
-            roundedGrades = gradingStudents(grades);
-            correct = roundedGrades;
-            Console.WriteLine(correct.SequenceEqual(roundedGrades));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 4:");
-            grades = new int[100000000];
-            grades[100000000 - 1] = 33;
-            grades[100000000 - 2] = 38;
-            grades[100000000 - 3] = 67;
-            grades[100000000 - 3] = 66;
-            grades[100000000 - 4] = 84;
-            roundedGrades = gradingStudents(grades);
-            correct = new int[100000000];
-            correct[100000000 - 1] = 33;
-            correct[100000000 - 2] = 40;
-            correct[100000000 - 3] = 67;
-            correct[100000000 - 3] = 66;
-            correct[100000000 - 4] = 85;
-            Console.WriteLine(correct.SequenceEqual(roundedGrades));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 5:");
-            grades = new int[] { -73, -67, -38, 33 };
-            roundedGrades = gradingStudents(grades);
-            displayArray(roundedGrades);
-            correct = new int[] { };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(roundedGrades));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 6:");
-            grades = new int[] { 101, 200, 300, 400 };
-            roundedGrades = gradingStudents(grades);
-            displayArray(roundedGrades);
-            correct = new int[] { };
-            displayArray(correct);
-            Console.WriteLine(correct.SequenceEqual(roundedGrades));
-            Console.ReadKey(true);*/
-
-            // Testing Find the median
-            /*Console.WriteLine("\n\nFind the median");
-            Console.WriteLine("\nCase 1:");
-            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 2:");
-            arr2 = new int[] { };
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 3:");
-            arr2 = null;
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
-            /*Console.WriteLine("\nCase 4:");
-            arr2 = new int[447483647];
-            for (int i = 223741824; i < arr2.Length; i++)
-            {
-                arr2[i] = 2;
-            }
-            arr2[223741823] = 1;
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 5:");
-            arr2 = new int[] { 0, 1, 2, 3, 6, 5};
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 6:");
-            arr2 = new int[] { 0, 1, 2, 4, 6, 5 };
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 7:");
-            arr2 = new int[] { -1, 2147483647, -3, 0, 5 };
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 8:");
-            arr2 = new int[] { -1, -2147483647, -3, 0, -5 };
-            Console.WriteLine(findMedian(arr2));
-            Console.ReadKey(true);*/
-
-            // Testing Balanced sums
-            /*Console.WriteLine("\n\nBalanced sums");
-            Console.WriteLine("\nCase 1:");
-            List<int> arr = new List<int> { 1, 2, 3 };
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 2:");
-            arr = new List<int> { 5, 6, 8, 11 };
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 3:");
-            arr = new List<int>();
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 4:");
-            arr = null;
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 5:");
-            arr = new List<int> { -1, -1, 0 };
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 6:");
-            arr = new List<int> { 0, -1, -1 };
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 7:");
-            arr = new List<int> { -1, -2, -3 };
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 8:");
-            arr = new List<int> { -1, 1, -1, 1 };
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 9:");
-            arr = new List<int> { -1, 3, -1, 3 };
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 10:");
-            arr = new List<int>(447483647);
-            for (int i = 0; i < arr.Capacity; i++)
-            {
-                arr.Add(0);
-            }
-            Console.WriteLine(balancedSums(arr));
-            Console.ReadKey(true);*/
-
-            // Testing closest numbers
-            Console.WriteLine("\n\nClosest numbers");
-            Console.WriteLine("\nCase 1:");
-            int[] arr3 = { 5, 4, 3, 2 };
-            int[] r4 = closestNumbers(arr3);
-            displayArray(r4);
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 2:");
-            arr3 = new int[] { };
-            r4 = closestNumbers(arr3);
-            displayArray(r4);
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 3:");
-            arr3 = null;
-            r4 = closestNumbers(arr3);
-            displayArray(r4);
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 4:");
-            arr3 = new int[] { -20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470 };
-            r4 = closestNumbers(arr3);
-            displayArray(r4);
-            Console.ReadKey(true);
-            Console.WriteLine("\nCase 5:");
-            arr3 = new int[] { 1, 2, 0, 0 };
-            r4 = closestNumbers(arr3);
-            displayArray(r4);
-            Console.ReadKey(true);
-            /*Console.WriteLine("\nCase 6:");
-            arr3 = new int[200000000];
-            for (int i = 0; i < arr3.Length; i++)
-            {
-                arr3[i] = i+1;
-            }
-            arr3[200000000 - 1] = 0;
-            arr3[200000000 - 2] = 0;
-            r4 = closestNumbers(arr3);
-            displayArray(r4);
-            Console.ReadKey(true);*/
-            Console.WriteLine("\nCase 7:");
-            arr3 = new int[] { -20, -2147483647, -2147483647, 2147483647, -7330761, 30, 2147483647, -520, -470 };
-            r4 = closestNumbers(arr3);
-            displayArray(r4);
-            Console.ReadKey(true);
         }
 
         static void displayArray(int[] arr)
@@ -393,21 +113,28 @@ namespace Assignment2_S19
             int[] labels = new int[0];              //creating new array to store the values
             try
             {
-                labels = new int[a.Length];
-                int count_of_rotation;
-                if (d < 0)
+                if (!IsNullOrEmpty(a))
                 {
-                    count_of_rotation = 0;
-                }
-                else if (IsNullOrEmpty(a))
-                {
-                    count_of_rotation = 0;
-                }
-                for (int i = 0; i < a.Length; i++)
-                {
-                    count_of_rotation = (i + d) % a.Length;
-                    count_of_rotation = Math.Abs(count_of_rotation);
-                    labels[i] = a[count_of_rotation];
+                    labels = new int[a.Length];
+                    int count_of_rotation;
+                    if (d < 0)
+                    {
+                        Console.WriteLine("The number of left rotations must be 0 or more!");
+                        labels = a;
+                    }
+                    else if (d == 0)
+                    {
+                        labels = a;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < a.Length; i++)
+                        {
+                            count_of_rotation = (i + d) % a.Length;
+                            count_of_rotation = Math.Abs(count_of_rotation);
+                            labels[i] = a[count_of_rotation];
+                        }
+                    }
                 }
             }
             catch (OutOfMemoryException)
@@ -513,13 +240,6 @@ namespace Assignment2_S19
         // Complete the balancedSums function below.
         static string balancedSums(List<int> arr)
         {
-            /*
-                Case 3: Error if arr is Empty, Please Use IsNullOrEmpty() that I coded below
-                Case 4: Error if arr = null, Please Use IsNullOrEmpty() that I coded below
-                Case 5, 6, 7, 8: Incorrect and always YES output! when compare of negative with zero. Do you consider negative sum same as zero?
-                Case 9: Correct! because there is no compare of negative with zero
-                Case 10: Error because of Memory Allocation! your code consumes so much memory! Please don't Convert List to Array"
-            */
             try
             {
                 if (!IsNullOrEmpty(arr))
@@ -586,7 +306,7 @@ namespace Assignment2_S19
             }
             catch
             {
-                Console.WriteLine("Exception occured while computing maximumToys()");
+                Console.WriteLine("Exception occured while computing balancedSums()");
             }
             return "";
         }
@@ -701,6 +421,11 @@ namespace Assignment2_S19
                     }
                 }
             }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
+                cleanMissingNumbers = Array.Empty<int>();
+            }
             catch
             {
                 Console.WriteLine("Exception occured while computing missingNumbers()");
@@ -717,35 +442,39 @@ namespace Assignment2_S19
             try
             {
                 int score = 0;
-                marks = new int[grades.Length];         // creating new array to store marks
-                if (IsNullOrEmpty(grades))
+                if (!IsNullOrEmpty(grades))
                 {
-                    Console.WriteLine("Please enter positive values");
+                    marks = new int[grades.Length];         // creating new array to store marks
+                    for (int i = 0; i < grades.Length; i++)
+                    {
+                        if (grades[i] < 0)                      // if entered marks are lesser than zero
+                        {
+                            Console.WriteLine("The grade entered {0} is less than 0, rounded to to 0", grades[i]);
+                            continue;
+                        }
+                        else if (grades[i] > 100)               // if entered marks are greater than 100
+                        {
+                            Console.WriteLine("The grade entered {0} is greater than 100, rounded to to 0", grades[i]);
+                            continue;
+                        }
+                        score = ((grades[i] / 5) + 1) * 5;
+                        if (score - grades[i] < 3 && grades[i] > 37)            //checking the condition if lesser than 40 and meeting expectation
+                            marks[i] = score;                       // store the scores
+                        else
+                        {
+                            marks[i] = grades[i];
+                        }
+                    }
                 }
-                for (int i = 0; i < grades.Length; i++)
-                {
-                    if (grades[i] < 0)                      // if entered marks are lesser than zero
-                    {
-                        Console.WriteLine("The grade entered is lesser than 0, Hence converting it to 0");
-                        continue;
-                    }
-                    else if (grades[i] > 100)               // if entered marks are greater than 100
-                    {
-                        Console.WriteLine("The grade" + grades[i], " greater than 100, Hence converting it to 0");
-                        continue;
-                    }
-                    score = ((grades[i] / 5) + 1) * 5;
-                    if (score - grades[i] < 3 && grades[i] > 37)            //checking the condition if lesser than 40 and meeting expectation
-                        marks[i] = score;                       // store the scores
-                    else
-                    {
-                        marks[i] = grades[i];
-                    }
-                }
+                
+            }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
             }
             catch
             {
-                Console.WriteLine("This is a huge array and consumes so much memory,\n");
+                Console.WriteLine("Exception occured while computing gradingStudents()");
             }
             return marks;
         }
@@ -755,63 +484,52 @@ namespace Assignment2_S19
         {
             try
             {
-                int count = arr.Length;
-                int[] SortedArray = Sort(arr);  //using the sort method created below
-                // new []arr1 = new int arr[]{ };
                 int medianValue = 0;
-                if (count % 2 == 0)
+                if (!IsNullOrEmpty(arr))
+                {
+                    int count = arr.Length;
+                    int[] SortedArray = Sort(arr);  //using the sort method created below
+                    if (count % 2 == 0)
 
-                {
-                    //if count is even
-                    int no1 = SortedArray[(count / 2) - 1];
-                    int no2 = SortedArray[(count / 2)];
-                    double medianValueDouble = (no1 + no2) / 2.0;
-                    medianValue = Convert.ToInt32(medianValueDouble);
-                    // If median is not integer, we show a message and return 0
-                    if (medianValueDouble != medianValue)
                     {
-                        Console.WriteLine("The Median is {0} and cannot return it because it is not integer!", medianValueDouble);
-                        medianValue = 0;
+                        //if count is even
+                        int no1 = SortedArray[(count / 2) - 1];
+                        int no2 = SortedArray[(count / 2)];
+                        double medianValueDouble = (no1 + no2) / 2.0;
+                        medianValue = Convert.ToInt32(medianValueDouble);
+                        // If median is not integer, we show a message and return 0
+                        if (medianValueDouble != medianValue)
+                        {
+                            Console.WriteLine("The Median is {0} and cannot return it because it is not integer!", medianValueDouble);
+                            medianValue = 0;
+                        }
                     }
-                }
-                else
-                {
-                    // if count is odd
-                    medianValue = SortedArray[(count / 2)];
+                    else
+                    {
+                        // if count is odd
+                        medianValue = SortedArray[(count / 2)];
+                    }
                 }
                 return medianValue;
             }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("This is a huge array and consumed so much memory!");
+            }
             catch
             {
-                Console.WriteLine("This is a huge array and consumes so much memory,\n");
+                Console.WriteLine("Exception occured while computing findMedian()");
             }
             return 0;
         }
 
         static int[] closestNumbers(int[] arr)
         {
-            /*
-                Solved This method does not return an array, it prints the output. I changed the code to save in array and return it
-                Case 2: Solved - Error if arr is Empty, Please Use IsNullOrEmpty() that I coded below
-                Case 3: Solved - Error if arr = null, Please Use IsNullOrEmpty() that I coded below
-            */
             int[] pairs = new int[0];
             try
             {
-                /// Delete the following code :)
-                /*
-                int count = arr.Count();
-                int[] GivenInput = arr;
-
-                var Listing_Array = new int[count];
-                for (int i = 0; i < count; i++)
-                {
-                    Listing_Array[i] = Convert.ToInt32(GivenInput[i]);
-                }
-                */
                 if (!IsNullOrEmpty(arr))
                 {
-                    /// Sort the arr directly!
                     int[] Sorted = Sort(arr);
 
                     var pairsIndeces = new List<int>();
@@ -829,12 +547,10 @@ namespace Assignment2_S19
                             min = ComparedResult;
                         }
                     }
-                    /// Save in array and return it
                     pairs = new int[pairsIndeces.Count];
                     for (int i = 0; i < pairsIndeces.Count; i++)
                     {
                         pairs[i] = Sorted[pairsIndeces[i]];
-                        /// Delete Console.Write(Sorted[Output[i]] + " ");
                     }
                 }
 
@@ -856,7 +572,11 @@ namespace Assignment2_S19
         {
             try
             {
-                if (year >= 1919)
+                if (year < 1700 || year > 2700)
+                {
+                    return "Please use a valid year from 1700 to 2700";
+                }
+                else if (year >= 1919)
                 {
                     if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
                     {
