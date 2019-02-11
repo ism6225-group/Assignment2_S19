@@ -16,7 +16,7 @@
                 7. Closest numbers
                 8. Day of Programmer
     Self Reflection:
-        Sameera Reflection:
+        Sameera's Reflection:
                 There were 8 codes 
                  * Issues faced: Testing corner cases
                  * Example: For Left Rotations, the value of rotations is negative
@@ -25,6 +25,13 @@
                  * They do not match either of the given condition
                  Resolution time: 3 seconds on every code
                  Successful : Yes
+
+        Vivek's Reflection:
+
+
+
+
+
 */
 using System;
 using System.Collections.Generic;
@@ -467,9 +474,13 @@ namespace Assignment2_S19
             */
             try
             {
+                 if (!IsNullOrEmpty(arr))
+                {
+                    
                 int n = arr.Count;
-
+                
                 int[] Sample = arr.ToArray();
+                
                 //total sum of given array
                 int ADDStorage = 0;
                 for (int x = 0; x < Sample.Length; x++)
@@ -522,6 +533,7 @@ namespace Assignment2_S19
                 else
                     return "NO";
             }
+                 }
             catch
             {
                 Console.WriteLine("error");
